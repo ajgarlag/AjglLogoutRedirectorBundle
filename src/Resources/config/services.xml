@@ -7,6 +7,9 @@
         <service id="ajgl_logout_redirector.security.logout.success_handler" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\Logout\LogoutSuccessHandler" abstract="true">
             <argument type="service" id="security.http_utils" />
             <argument type="collection" /> <!-- Options -->
+            <call method="setFirewallMap">
+                <argument type="service" id="security.firewall.map"/>
+            </call>
         </service>
     </services>
 </container>
