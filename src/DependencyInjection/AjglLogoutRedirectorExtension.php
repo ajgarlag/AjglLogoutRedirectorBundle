@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
 class AjglLogoutRedirectorExtension extends Extension
 {
@@ -28,15 +29,19 @@ class AjglLogoutRedirectorExtension extends Extension
 
         $config = $this->processConfiguration(new Configuration(), $configs);
 
-        $this->configureLogoutSuccessHandlerDecorators($container, $config['handlers']);
+        $this->configureLogoutSuccessHandlerDecorators($container, $config['redirectors']);
     }
 
-    private function configureLogoutSuccessHandlerDecorators(ContainerBuilder $container, array $handlers): void
+    private function configureLogoutSuccessHandlerDecorators(ContainerBuilder $container, array $redirectors): void
     {
-        foreach ($handlers as $name => $config) {
-            $childDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.success_handler');
-            $childDefinition->setArgument(2, $config);
-            $container->setDefinition('ajgl_logout_redirector.security.logout.success_handler.'.$name, $childDefinition);
+        foreach ($redirectors as $name => $config) {
+            $redirectorChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.redirector');
+            $redirectorChildDefinition->replaceArgument(1, $config);
+            $container->setDefinition('ajgl_logout_redirector.security.logout.redirector.'.$name, $redirectorChildDefinition);
+
+            $handlerChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.success_handler');
+            $handlerChildDefinition->replaceArgument(0, new Reference('ajgl_logout_redirector.security.logout.redirector.'.$name));
+            $container->setDefinition('ajgl_logout_redirector.security.logout.success_handler.'.$name, $handlerChildDefinition);
         }
     }
 }

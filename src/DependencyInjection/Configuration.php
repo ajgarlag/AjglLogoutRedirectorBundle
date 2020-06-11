@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('handlers')
+                ->arrayNode('redirectors')
                     ->useAttributeAsKey('name')
                     ->arrayPrototype()
                         ->children()
