@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.1.0] - 2020-06-12
+
 ### Added
 
 * Add new `LogoutRedirector` class
@@ -25,5 +27,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Initial implementation
 
 
-[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.0.2...master
+[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.0...master
+[0.1.0]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.0.1...0.0.2
