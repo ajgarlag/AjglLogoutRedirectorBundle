@@ -15,5 +15,9 @@
         <service id="ajgl_logout_redirector.security.logout.success_handler" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\Logout\LogoutSuccessHandler" abstract="true">
             <argument />
         </service>
+
+        <service id="ajgl_logout_redirector.security.logout.listener" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\EventListener\LogoutRedirectorEventListener" abstract="true">
+            <argument />
+        </service>
     </services>
 </container>
