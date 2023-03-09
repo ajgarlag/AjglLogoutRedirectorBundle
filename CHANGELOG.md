@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.2.0] - 2023-03-09
+
+### Added
+
+* Add support for Symfony 6.2
+
 ### Changed
 
 * Require thecodingmachine/safe:^2.4
@@ -62,7 +68,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Initial implementation
 
 
-[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.4...master
+[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.2.0...master
+[0.2.0]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.4...0.2.0
 [0.1.4]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.1...0.1.2
