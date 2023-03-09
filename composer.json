@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0",
         "symfony/framework-bundle": "^3.4|^4.4|^5",
         "symfony/security-bundle": "^3.4|^4.4|^5",
         "thecodingmachine/safe": "^0.1|^1"
@@ -37,9 +37,9 @@
         }
     },
     "scripts": {
-        "php-cs-fixer": "vendor/bin/php-cs-fixer fix --dry-run --ansi",
-        "phplint": "vendor/bin/phplint --ansi",
-        "phpunit": "vendor/bin/simple-phpunit",
+        "php-cs-fixer": "@php vendor/bin/php-cs-fixer fix --dry-run --ansi",
+        "phplint": "@php vendor/bin/phplint --ansi",
+        "phpunit": "@php vendor/bin/simple-phpunit",
 
         "ci": [
             "@phplint",
@@ -47,7 +47,7 @@
             "@test"
         ],
         "lint": [
-            "vendor/bin/php-cs-fixer fix --ansi"
+            "@php vendor/bin/php-cs-fixer fix --ansi"
         ],
         "test": [
             "@phpunit"

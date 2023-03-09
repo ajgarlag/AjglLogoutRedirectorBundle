@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.1.2] - 2023-03-09
+
+### Added
+
+* Add support for PHP>=8.0
+
 ## [0.1.1] - 2020-06-12
 
 ### Fixed
