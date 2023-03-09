@@ -14,17 +14,26 @@ declare(strict_types=1);
 namespace Ajgl\Bundle\LogoutRedirectorBundle\Http\EventListener;
 
 use Ajgl\Bundle\LogoutRedirectorBundle\Http\Logout\LogoutRedirector;
+use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 class LogoutRedirectorEventListener implements EventSubscriberInterface
 {
-    private $logoutRedirector;
+    private FirewallMap $firewallMap;
+    /**
+     * @var array<string, LogoutRedirector>
+     */
+    private array $logoutRedirectors;
 
-    public function __construct(LogoutRedirector $logoutRedirector)
+    /**
+     * @param iterable<string, LogoutRedirector> $logoutRedirectors
+     */
+    public function __construct(FirewallMap $firewallMap, iterable $logoutRedirectors)
     {
-        $this->logoutRedirector = $logoutRedirector;
+        $this->logoutRedirectors = $logoutRedirectors instanceof \Traversable ? iterator_to_array($logoutRedirectors) : $logoutRedirectors;
     }
 
     public function onLogout(LogoutEvent $event): void
@@ -33,7 +42,28 @@ class LogoutRedirectorEventListener implements EventSubscriberInterface
             return;
         }
 
-        $event->setResponse($this->logoutRedirector->getLogoutRedirect($event->getRequest()));
+        $request = $event->getRequest();
+        $context = $this->getFirewallContext($request);
+
+        if (null === $context || !array_key_exists($context, $this->logoutRedirectors)) {
+            return;
+        }
+
+        $response = $this->logoutRedirectors[$context]->getLogoutRedirect($request);
+        if ($response instanceof Response) {
+            $event->setResponse($response);
+        }
+    }
+
+    private function getFirewallContext(Request $request): ?string
+    {
+        $firewallConfig = $this->firewallMap->getFirewallConfig($request);
+
+        if (null === $firewallConfig) {
+            return null;
+        }
+
+        return $firewallConfig->getContext();
     }
 
     public static function getSubscribedEvents(): array

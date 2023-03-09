@@ -6,14 +6,14 @@
     <services>
         <service id="ajgl_logout_redirector.security.logout.redirector" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\Logout\LogoutRedirector" abstract="true">
             <argument type="service" id="security.http_utils"/>
+            <argument/> <!-- Context -->
             <argument type="collection"/> <!-- Options -->
-            <call method="setFirewallMap">
-                <argument type="service" id="security.firewall.map"/>
-            </call>
         </service>
 
-        <service id="ajgl_logout_redirector.security.logout.listener" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\EventListener\LogoutRedirectorEventListener" abstract="true">
-            <argument />
+        <service id="ajgl_logout_redirector.security.logout.listener" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\EventListener\LogoutRedirectorEventListener">
+            <argument type="service" id="security.firewall.map"/>
+            <argument type="tagged_iterator" tag="ajgl_logout_redirector" index-by="context"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
     </services>
 </container>

@@ -18,7 +18,6 @@ use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 
 class AjglLogoutRedirectorExtension extends Extension
 {
@@ -34,15 +33,12 @@ class AjglLogoutRedirectorExtension extends Extension
 
     private function configureLogoutRedirector(ContainerBuilder $container, array $redirectors): void
     {
-        foreach ($redirectors as $name => $config) {
+        foreach ($redirectors as $context => $config) {
             $redirectorChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.redirector');
-            $redirectorChildDefinition->replaceArgument(1, $config);
-            $container->setDefinition('ajgl_logout_redirector.security.logout.redirector.'.$name, $redirectorChildDefinition);
-
-            $listenerChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.listener');
-            $listenerChildDefinition->replaceArgument(0, new Reference('ajgl_logout_redirector.security.logout.redirector.'.$name));
-            $listenerChildDefinition->addTag('kernel.event_subscriber');
-            $container->setDefinition('ajgl_logout_redirector.security.logout.listener.'.$name, $listenerChildDefinition);
+            $redirectorChildDefinition->replaceArgument(1, $context);
+            $redirectorChildDefinition->replaceArgument(2, $config);
+            $redirectorChildDefinition->addTag('ajgl_logout_redirector', ['context' => $context]);
+            $container->setDefinition('ajgl_logout_redirector.security.logout.redirector.'.$context, $redirectorChildDefinition);
         }
     }
 }
