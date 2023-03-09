@@ -21,12 +21,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('ajgl_logout_redirector');
-        if (method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // BC layer for symfony/config 4.1 and older
-            $rootNode = $treeBuilder->root('ajgl_logout_redirector');
-        }
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
