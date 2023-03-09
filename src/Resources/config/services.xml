@@ -12,11 +12,6 @@
             </call>
         </service>
 
-        <service id="ajgl_logout_redirector.security.logout.success_handler" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\Logout\LogoutSuccessHandler" abstract="true">
-            <argument />
-            <deprecated package="ajgl/logout-redirector-bundle" version="0.1.4">The "%service_id%" service is deprecated since ajgl/logout-redirector-bundle 0.1.4 and will be removed in 0.2.</deprecated>
-        </service>
-
         <service id="ajgl_logout_redirector.security.logout.listener" class="Ajgl\Bundle\LogoutRedirectorBundle\Http\EventListener\LogoutRedirectorEventListener" abstract="true">
             <argument />
         </service>

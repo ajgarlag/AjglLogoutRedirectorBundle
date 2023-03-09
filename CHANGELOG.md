@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Removed
+
+* Remove `LogoutSuccessHandler`
+
 ## [0.1.4] - 2023-03-09
 
 ### Deprecated
@@ -53,7 +57,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Initial implementation
 
 
-[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.3...master
+[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.4...master
+[0.1.4]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.0...0.1.1
