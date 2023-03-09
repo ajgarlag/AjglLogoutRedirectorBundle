@@ -19,7 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 class AjglLogoutRedirectorExtension extends Extension
 {
@@ -40,16 +39,10 @@ class AjglLogoutRedirectorExtension extends Extension
             $redirectorChildDefinition->replaceArgument(1, $config);
             $container->setDefinition('ajgl_logout_redirector.security.logout.redirector.'.$name, $redirectorChildDefinition);
 
-            if (class_exists(LogoutEvent::class)) {
-                $listenerChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.listener');
-                $listenerChildDefinition->replaceArgument(0, new Reference('ajgl_logout_redirector.security.logout.redirector.'.$name));
-                $listenerChildDefinition->addTag('kernel.event_subscriber');
-                $container->setDefinition('ajgl_logout_redirector.security.logout.listener.'.$name, $listenerChildDefinition);
-            } else {
-                $handlerChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.success_handler');
-                $handlerChildDefinition->replaceArgument(0, new Reference('ajgl_logout_redirector.security.logout.redirector.'.$name));
-                $container->setDefinition('ajgl_logout_redirector.security.logout.success_handler.'.$name, $handlerChildDefinition);
-            }
+            $listenerChildDefinition = new ChildDefinition('ajgl_logout_redirector.security.logout.listener');
+            $listenerChildDefinition->replaceArgument(0, new Reference('ajgl_logout_redirector.security.logout.redirector.'.$name));
+            $listenerChildDefinition->addTag('kernel.event_subscriber');
+            $container->setDefinition('ajgl_logout_redirector.security.logout.listener.'.$name, $listenerChildDefinition);
         }
     }
 }
