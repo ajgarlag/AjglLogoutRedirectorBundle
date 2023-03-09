@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.1.4] - 2023-03-09
+
+### Deprecated
+
+* Deprecate `LogoutSuccessHandler`
+
 ## [0.1.3] - 2023-03-09
 
 ### Removed
