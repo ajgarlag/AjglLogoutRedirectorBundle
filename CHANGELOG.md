@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Removed
+
+* Drop support for Symfony<5.4
+
 ## [0.1.2] - 2023-03-09
 
 ### Added
@@ -39,6 +43,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Initial implementation
 
 
-[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.0...master
+[unreleased]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.2...master
+[0.1.2]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.1...0.1.2
+[0.1.1]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/ajgarlag/AjglLogoutRedirectorBundle/compare/0.0.1...0.0.2
