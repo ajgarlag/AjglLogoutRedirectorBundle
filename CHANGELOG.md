@@ -4,9 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+### Changed
+
+* Require thecodingmachine/safe:^2.4
+
 ### Removed
 
 * Remove `LogoutSuccessHandler`
+* Drop support for PHP:<8.0
 
 ## [0.1.4] - 2023-03-09
 
