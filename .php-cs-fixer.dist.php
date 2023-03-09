@@ -8,14 +8,16 @@ Copyright (c) Antonio J. García Lagar <aj@garcialagar.es>
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 EOF;
-return \PhpCsFixer\Config::create()
+return (new \PhpCsFixer\Config)
     ->setRiskyAllowed(true)
     ->setRules(
         [
+            '@PER' => true,
+            '@PER:risky' => true,
             '@Symfony' => true,
             '@Symfony:risky' => true,
-            '@PHP71Migration' => true,
-            '@PHP71Migration:risky' => true,
+            '@PHP74Migration' => true,
+            '@PHP74Migration:risky' => true,
             'array_syntax' => array('syntax' => 'short'),
             'fully_qualified_strict_types' => true,
             'header_comment' => array('header' => $header),
@@ -24,7 +26,7 @@ return \PhpCsFixer\Config::create()
                 'imports_order' => ['class', 'const', 'function'],
             ],
             'phpdoc_order' => true,
-            'psr4' => true,
+            'psr_autoloading' => true,
             'strict_comparison' => true,
             'strict_param' => true,
         ]
